@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <circle cx="100" cy="100" r="80" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="8 4"/>
+  <circle cx="100" cy="85" r="30" stroke="#94a3b8" stroke-width="2"/>
+  <ellipse cx="100" cy="85" rx="12" ry="30" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="70" y1="85" x2="130" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="73" y1="75" x2="127" y2="75" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+  <line x1="73" y1="95" x2="127" y2="95" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+  <text x="100" y="145" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#94a3b8">No results</text>
+</svg>
