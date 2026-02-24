@@ -1,1 +1,3 @@
-// Application entry point — detect which page is loaded and initialize it
+// Application entry point — import page scripts
+
+import "./explore.js";
