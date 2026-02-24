@@ -10,7 +10,7 @@ fetch("navbar.html")
     .then(data => {
       document.getElementById("navbar").innerHTML = data;
 
-      // Highlight active link
+      
       const links = document.querySelectorAll(".nav-links a");
       const currentPage = window.location.pathname.split("/").pop();
 
