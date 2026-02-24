@@ -13,3 +13,30 @@
     --radius-md: 0.5rem;
   }
 */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: #eaf2fb;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  font-style: 'inter';
+}
+
+.hero p {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-style: normal;
+}
+
+.hero input {
+  width: 500px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 57px;
+  border: 1px solid #d9eff6;
+}
