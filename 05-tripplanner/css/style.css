@@ -460,3 +460,42 @@ gap: 30px;
 .compare-table tbody tr:last-child {
   border-bottom: none;
 }
+
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: #64748b;
+}
+
+.empty-state img {
+  width: 80px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.empty-state h2 {
+  font-weight: 600;
+  color: #334155;
+}
+
+.empty-state p {
+  margin-top: 10px;
+}
+
+
+
+/* footer section styles */
+
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f1f5f9;
+  margin-top: 40px;
+}
+
+.footer-text {
+  color: #6b7280;
+  font-size: 14px;
+}

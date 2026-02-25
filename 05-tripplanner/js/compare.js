@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
     .catch(err => console.error("Error fetching countries:", err));
+    showPlaceholder();
 });
 
 
@@ -53,15 +54,13 @@ async function updateComparison() {
     .map(s => s.value)
     .filter(v => v !== "");
 
-  // Remove duplicates
   const uniqueCodes = [...new Set(selectedCodes)];
 
   if (uniqueCodes.length === 0) {
-    tableContainer.innerHTML = "";
+    showPlaceholder();
     return;
   }
 
-  // Fetch country details
   const responses = await Promise.all(
     uniqueCodes.map(code =>
       fetch(`https://restcountries.com/v3.1/alpha/${code}`)
@@ -146,5 +145,17 @@ function renderTable(countries) {
     </table>
   `;
 
-  tableContainer.innerHTML = tableHTML;
+  section.innerHTML = tableHTML;
+}
+
+const section = document.getElementById("comparisonSection");
+
+function showPlaceholder() {
+  section.innerHTML = `
+    <div class="empty-state">
+      <img src="images/emptypage2.jpg" alt="Empty" />
+      <h2>Select countries to compare</h2>
+      <p>Choose at least 2 countries from the dropdowns above to see a side-by-side comparison.</p>
+    </div>
+  `;
 }
