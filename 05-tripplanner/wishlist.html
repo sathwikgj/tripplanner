@@ -13,23 +13,36 @@
 <body>
 
   <header>
-    <!-- Navigation: Logo + links to Explore, Wishlist, Compare, Plan a Trip -->
      <div id="navbar"></div>
   </header>
+<main class="wishlist">
 
-  <main>
-    <!-- Page title and count -->
-    <!-- Plan a Trip button -->
-    <!-- Wishlist country cards grid with remove -->
-    <!-- Empty state when no countries saved -->
-  </main>
+  <section class="wishlist-top">
+    <div class="wishlist-info">
+      <h1>My Wishlist</h1>
+      <p id="wishlist-count">0 countries in your wishlist</p>
+    </div>
 
+    <button class="btn-plan">📅 Plan a Trip</button>
+  </section>
+
+  <section class="wishlist-empty" id="empty-state">
+    <div class="empty-heart">♡</div>
+    <h2>Your wishlist is empty</h2>
+    <p>Start exploring countries and add your favorites to the wishlist.</p>
+
+    <a href="explore.html" class="btn-explore">Explore Countries</a>
+  </section>
+
+  <section class="wishlist-list" id="wishlist-grid"></section>
+
+</main>
   <footer>
     <p>&copy; 2026 TripPlanner. All rights reserved.</p>
   </footer>
 
   <script type="module" src="js/app.js"></script>
-    <script src="js/navbar.js"></script>
+
 
 </body>
 </html>
