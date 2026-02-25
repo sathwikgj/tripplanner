@@ -34,7 +34,21 @@
         <button class="region-button" data-region="Europe">Europe</button>
         <button class="region-button" data-region="Oceania">Oceania</button>
       </div>
-      <span class="country-count" id="countries-count">Showing 0 countries</span>
+
+      <div class="toolbar-right">
+        <div class="sort-wrapper">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" class="sort-select">
+            <option value="name-asc">Name A–Z</option>
+            <option value="name-desc">Name Z–A</option>
+            <option value="population-desc">Population high → low</option>
+            <option value="population-asc">Population low → high</option>
+            <option value="area-desc">Area high → low</option>
+          </select>
+        </div>
+
+        <span class="country-count" id="countries-count">Showing 0 countries</span>
+      </div>
     </div>
 
     <section class="country-section">

@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const updated = getWishlist().filter((c) => c.cca3 !== country.cca3);
         saveWishlist(updated);
         render();
+        if (window.updateWishlistCount) {
+          window.updateWishlistCount();
+        }
       });
 
       grid.appendChild(card);

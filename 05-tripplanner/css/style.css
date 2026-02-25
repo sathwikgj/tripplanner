@@ -136,6 +136,18 @@ gap: 30px;
   font-size: 22px;
   padding-top: 10px;
 }
+.wishlist-badge {
+  margin-left: 6px;
+  padding: 2px 8px;
+  min-width: 22px;
+  border-radius: 999px;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  display: none;
+  text-align: center;
+}
 .nav-links a:hover{
   color:#0f766e;
   background-color: #f1f5f9;
@@ -214,6 +226,35 @@ gap: 30px;
   background-color: #0f766e;
   color: #ffffff;
   border-color: #0f766e;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sort-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.sort-select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
 }
 
 .country-count {

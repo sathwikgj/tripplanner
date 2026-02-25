@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadMoreButton = document.getElementById("load-more-btn");
   const regionButtons = document.querySelectorAll("[data-region]");
   const templateElement = document.getElementById("country-card-template");
+  const sortSelect = document.getElementById("sort-select");
 
   if (!grid || !countText || !loadMoreButton || !templateElement) {
     return;
@@ -23,10 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let allCountries = [];
   let currentRegion = "all";
   let visibleCount = PAGE_SIZE;
+  let currentSort = "name-asc";
 
   loadCountries();
   setupRegionButtons();
   setupLoadMoreButton();
+  setupSortSelect();
 
   async function loadCountries() {
     try {
@@ -34,9 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       console.log("Fetched countries:", data);
 
-      allCountries = data.sort((a, b) =>
-        a.name.common.localeCompare(b.name.common)
-      );
+      allCountries = data;
 
       showCountries();
     } catch (error) {
@@ -69,6 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function setupSortSelect() {
+    if (!sortSelect) return;
+
+    sortSelect.addEventListener("change", () => {
+      currentSort = sortSelect.value || "name-asc";
+      visibleCount = PAGE_SIZE;
+      showCountries();
+    });
+  }
+
   function getCountriesForCurrentRegion() {
     if (currentRegion === "all") {
       return allCountries;
@@ -78,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showCountries() {
-    const filtered = getCountriesForCurrentRegion();
+    const filtered = sortCountries(getCountriesForCurrentRegion().slice());
     const visibleCountries = filtered.slice(0, visibleCount);
 
     grid.innerHTML = "";
@@ -94,6 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
       loadMoreButton.style.display = "none";
     } else {
       loadMoreButton.style.display = "inline-flex";
+    }
+  }
+
+  function sortCountries(list) {
+    switch (currentSort) {
+      case "name-desc":
+        return list.sort((a, b) =>
+          b.name.common.localeCompare(a.name.common)
+        );
+      case "population-desc":
+        return list.sort((a, b) => (b.population || 0) - (a.population || 0));
+      case "population-asc":
+        return list.sort((a, b) => (a.population || 0) - (b.population || 0));
+      case "area-desc":
+        return list.sort((a, b) => (b.area || 0) - (a.area || 0));
+      case "name-asc":
+      default:
+        return list.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
     }
   }
 
@@ -180,6 +211,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         saveWishlist(list);
+        if (window.updateWishlistCount) {
+          window.updateWishlistCount();
+        }
       });
     }
     // ✅ ===== End Wishlist Logic =====
