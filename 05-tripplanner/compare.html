@@ -14,22 +14,7 @@
 
   <header>
     <!-- Navigation: Logo + links to Explore, Wishlist, Compare, Plan a Trip -->
-     <nav class="navbar">
-      <div class="nav-container">
-
-    <div class="logo">
-      <!-- <img src="favicon.svg" alt="TripPlanner Logo" class="logo-icon"> -->
-      <span>TripPlanner</span>
-    </div>
-
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Explore</a></li>
-        <li><a href="wishlist.html">Wishlist</a></li>
-        <li><a href="compare.html">Compare</a></li>
-        <li><a href="plan.html">Plan a Trip</a></li>
-      </ul>
-      </div>
-      </nav>
+   <div id="navbar"></div>
   </header>
 
   <main>
@@ -37,6 +22,13 @@
     <!-- 3 country selector dropdowns (custom dropdowns, not native select) -->
     <!-- Comparison table (side-by-side: population, area, region, languages, currencies) -->
     <!-- Empty state when fewer than 2 countries selected -->
+
+    <div class="comparison-container">
+     <div class="comparison-header">
+      <h1>Compare Countries</h1>
+      <p>Select 2 or 3 countries to compare side-by-side.</p>
+     </div>
+    </div>
   </main>
 
   <footer>
@@ -44,5 +36,6 @@
   </footer>
 
   <script type="module" src="js/app.js"></script>
+  <script src="js/navbar.js"></script>
 </body>
 </html>
