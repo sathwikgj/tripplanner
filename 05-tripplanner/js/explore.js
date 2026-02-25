@@ -1,5 +1,3 @@
-// Explore page — simple version: load countries, filter by region, and load more
-
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("countries-grid");
   const countText = document.getElementById("countries-count");
@@ -7,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const regionButtons = document.querySelectorAll("[data-region]");
   const templateElement = document.getElementById("country-card-template");
 
-  // If this page does not have the explore elements, do nothing.
   if (!grid || !countText || !loadMoreButton || !templateElement) {
     return;
   }
@@ -15,10 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_URL =
     "https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags,cca3,area";
 
-  const PAGE_SIZE = 12; // 3 rows x 4 columns
+  const PAGE_SIZE = 12;
 
-  // We keep one copy of the card HTML in memory.
-  const cardTemplate = templateElement.content.querySelector(".card").cloneNode(true);
+  const cardTemplate = templateElement.content
+    .querySelector(".card")
+    .cloneNode(true);
 
   templateElement.remove();
 
@@ -34,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
-      console.log('Fetched countries:', data);
+      console.log("Fetched countries:", data);
 
       allCountries = data.sort((a, b) =>
         a.name.common.localeCompare(b.name.common)
@@ -126,9 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const capital =
-      country.capital && country.capital.length > 0
-        ? country.capital[0]
-        : "N/A";
+      country.capital && country.capital.length > 0 ? country.capital[0] : "N/A";
 
     if (capitalEl) {
       capitalEl.textContent = `Capital: ${capital}`;
@@ -144,6 +140,50 @@ document.addEventListener("DOMContentLoaded", () => {
       areaEl.textContent = `Area: ${formatNumber(country.area)} km²`;
     }
 
+    // ✅ ===== Wishlist Logic (FIXED - INSIDE createCountryCard) =====
+    const heartBtn = card.querySelector(".heart");
+
+    if (heartBtn) {
+      const WISHLIST_KEY = "wishlist";
+
+      function getWishlist() {
+        return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+      }
+
+      function saveWishlist(list) {
+        localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+      }
+
+      // set initial state
+      const exists = getWishlist().some((c) => c.cca3 === country.cca3);
+      heartBtn.textContent = exists ? "♥" : "♡";
+
+      heartBtn.addEventListener("click", () => {
+        let list = getWishlist();
+        const alreadyExists = list.some((c) => c.cca3 === country.cca3);
+
+        if (alreadyExists) {
+          list = list.filter((c) => c.cca3 !== country.cca3);
+          heartBtn.textContent = "♡";
+        } else {
+          list.push({
+            cca3: country.cca3,
+            name: country.name.common,
+            capital: country.capital?.[0] || "N/A",
+            region: country.region,
+            population: country.population,
+            area: country.area,
+            flag: country.flags?.svg || country.flags?.png || "",
+          });
+
+          heartBtn.textContent = "♥";
+        }
+
+        saveWishlist(list);
+      });
+    }
+    // ✅ ===== End Wishlist Logic =====
+
     return card;
   }
 
@@ -155,4 +195,3 @@ document.addEventListener("DOMContentLoaded", () => {
     return value.toLocaleString("en-US");
   }
 });
-

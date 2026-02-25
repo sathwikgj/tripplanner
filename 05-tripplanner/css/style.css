@@ -440,6 +440,17 @@ gap: 30px;
 }
 
 .compare-table tbody td {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.compare-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+.compare-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+.compare-table tbody td {
   border-bottom: 1px solid #e5e7eb;
 }
 
