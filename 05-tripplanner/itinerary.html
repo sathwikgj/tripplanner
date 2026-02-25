@@ -13,15 +13,45 @@
 </head>
 <body>
 
-  <header>
-
-     
+  <header>     
     <div id="navbar"></div>
-
   </header>
 
   <main>
-    
+    <div class="itinerary-container">
+      <div class="page-header">
+        <h1>Trip Itinerary</h1>
+        <p>Plan your day-by-day schedule. Drag activities to reorder or move between days.</p>
+      </div>
+      <!-- <div id="itineraryList"></div> -->
+
+  <div class="trip-section">
+
+  <div class="field">
+    <label>Trip Name</label>
+    <input type="text" placeholder="e.g., Japan Spring Trip">
+  </div>
+
+  <div class="field">
+    <label>Destination</label>
+    <input type="text" placeholder="e.g., Tokyo, Japan">
+  </div>
+
+  <div class="field">
+    <label>Daily Budget</label>
+    <div class="budget-input">
+      <span>$</span>
+      <input 
+        type="number" 
+        value="150" 
+        min="0" 
+        step="10"
+      >
+    </div>
+  </div>
+
+</div>
+      
   </main>
 
  <footer class="footer">

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     empty.style.display = "none";
-    grid.style.display = "grid";
+    grid.style.display = "flex";
     grid.innerHTML = "";
 
     list.forEach((country) => {
