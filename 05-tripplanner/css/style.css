@@ -383,8 +383,17 @@ gap: 30px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
+  background-color: white;
+  cursor: pointer;
 }
 
+.country-box select:hover {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+.country-box select option {
+  color: black;
+}
 .clear {
   margin-top: 8px;
   font-size: 14px;
@@ -411,17 +420,32 @@ gap: 30px;
 
 .compare-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate; 
   margin-top: 40px;
+   border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;   
 }
 
 .compare-table th,
 .compare-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
+  border: none;
+  padding: 14px;
   text-align: center;
+
 }
 
 .compare-table thead {
   background: #e6f4f1;
+}
+
+.compare-table tbody td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.compare-table tbody tr:last-child {
+  border-bottom: none;
 }
