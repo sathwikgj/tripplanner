@@ -79,8 +79,18 @@ body{
   gap: 8px;
   font-size: 20px;
   font-weight: 600;
-  color:#64748b;
+  color:#0f172a;
   line-height: 32px;
+}
+
+.logo a{
+  text-decoration: none;
+  color:#0f172a;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover{
+  color:#0f766e;
 }
 
 .nav-links{
@@ -94,12 +104,20 @@ gap: 30px;
   color:#1f2937;
   font-size: 16px;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: 0.3s ease;
   line-height: 26px;
+  border-radius: 10px;
+  gap:6px;
+  padding: 8px 16px;
 }
-
+.wheart{
+  font-size: 18px;
+  font-size: 22px;
+  padding-top: 10px;
+}
 .nav-links a:hover{
   color:#0f766e;
+  background-color: #f1f5f9;
 }
 
 .nav-links .active{
@@ -335,4 +353,75 @@ gap: 30px;
   font-weight: 400;
   line-height: 26px;
   color:#64748b;
+}
+
+
+
+/* comparision section styles */
+
+
+.compare-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+  color:#1e293b;
+}
+
+.country-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.country-box label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.country-box select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.clear {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.clear-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 14px;
+
+}
+
+.clear-btn:hover {
+  color:#dc2626;
+  transition: color 0.3s ease;
+}
+
+
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.compare-table thead {
+  background: #e6f4f1;
 }

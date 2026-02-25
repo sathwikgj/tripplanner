@@ -28,6 +28,34 @@
       <h1>Compare Countries</h1>
       <p>Select 2 or 3 countries to compare side-by-side.</p>
      </div>
+    <div class="compare-container">
+
+  <div class="country-box">
+    <label>Country 1</label>
+    <select id="country1">
+      <option value="">Select a country</option>
+    </select>
+    <button class="clear-btn" data-target="country1">Clear</button>
+  </div>
+
+  <div class="country-box">
+    <label>Country 2</label>
+    <select id="country2">
+      <option value="">Select a country</option>
+    </select>
+    <button class="clear-btn" data-target="country2">Clear</button>
+  </div>
+
+  <div class="country-box">
+    <label>Country 3 (optional)</label>
+    <select id="country3">
+      <option value="">Select a country</option>
+    </select>
+    <button class="clear-btn" data-target="country3">Clear</button>
+  </div>
+
+</div>
+<div id="comparisonTable"></div>
     </div>
   </main>
 
@@ -37,5 +65,6 @@
 
   <script type="module" src="js/app.js"></script>
   <script src="js/navbar.js"></script>
+  <script type="module" src="js/compare.js"></script>
 </body>
 </html>
