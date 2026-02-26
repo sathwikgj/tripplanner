@@ -396,6 +396,7 @@ gap: 30px;
   max-width: 1200px;
   margin: 0px auto;
   padding: 36px 0;
+  min-height: 100vh;
 }
 
 
@@ -423,22 +424,101 @@ gap: 30px;
   margin-bottom: 8px;
 }
 
-.country-box select {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  background-color: white;
-  cursor: pointer;
+.country-select {
+  position: relative;
 }
 
-.country-box select:hover {
+.country-select-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #0f172a;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.country-select-toggle:hover {
   border-color: #0f766e;
+  background-color: #f9fafb;
+}
+
+.country-select-arrow {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.country-select.open .country-select-toggle {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 2px rgba(15,118,110,0.18);
+}
+
+.country-select-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  border: 1px solid #e2e8f0;
+  padding: 8px 0;
+  z-index: 20;
+  display: none;
+}
+
+.country-select.open .country-select-dropdown {
+  display: block;
+}
+
+.country-select-search {
+  width: calc(100% - 24px);
+  margin: 0 12px 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  outline: none;
+}
+
+.country-select-search:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 2px rgba(15,118,110,0.12);
+}
+
+.country-select-options {
+  list-style: none;
+  max-height: 220px; /* about 6 items */
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.country-option {
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #0f172a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.country-option:hover {
+  background-color: #f1f5f9;
+}
+
+.country-option.is-selected::after {
+  content: "✓";
+  font-size: 12px;
   color: #0f766e;
 }
-.country-box select option {
-  color: black;
-}
+
 .clear {
   margin-top: 8px;
   font-size: 14px;

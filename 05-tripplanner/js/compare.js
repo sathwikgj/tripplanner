@@ -3,55 +3,42 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const selects = [
-    document.getElementById("country1"),
-    document.getElementById("country2"),
-    document.getElementById("country3")
-  ];
+  const keys = ["country1", "country2", "country3"];
 
   fetch("https://restcountries.com/v3.1/all?fields=name,cca3")
     .then(res => res.json())
     .then(data => {
-
       // Sort alphabetically
-      data.sort((a, b) => 
+      data.sort((a, b) =>
         a.name.common.localeCompare(b.name.common)
       );
 
-      data.forEach(country => {
-        selects.forEach(select => {
-          const option = document.createElement("option");
-          option.value = country.cca3; // useful later
-          option.textContent = country.name.common;
-          select.appendChild(option);
-        });
-      });
-
+      setupCustomCountryDropdowns(data, keys);
     })
     .catch(err => console.error("Error fetching countries:", err));
-    showPlaceholder();
+
+  showPlaceholder();
 });
 
 
+const selectedCountries = {
+  country1: "",
+  country2: "",
+  country3: ""
+};
+
 document.querySelectorAll(".clear-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    const targetSelect = document.getElementById(btn.dataset.target);
-    targetSelect.value = "";
+    const key = btn.dataset.target;
+    if (!key) return;
+
+    setSelectedCountry(key, "");
     updateComparison(); // re-render table
   });
 });
 
-
-const selects = document.querySelectorAll("select");
-const tableContainer = document.getElementById("comparisonTable");
-
-selects.forEach(select => {
-  select.addEventListener("change", updateComparison);
-});
-
 async function updateComparison() {
-  const selectedCodes = [...selects]
-    .map(s => s.value)
+  const selectedCodes = Object.values(selectedCountries)
     .filter(v => v !== "");
 
   const uniqueCodes = [...new Set(selectedCodes)];
@@ -158,4 +145,105 @@ function showPlaceholder() {
       <p>Choose at least 2 countries from the dropdowns above to see a side-by-side comparison.</p>
     </div>
   `;
+}
+
+function setupCustomCountryDropdowns(countries, keys) {
+  const dropdowns = document.querySelectorAll(".country-select");
+
+  dropdowns.forEach(dropdown => {
+    const key = dropdown.dataset.key;
+    if (!keys.includes(key)) return;
+
+    const toggle = dropdown.querySelector(".country-select-toggle");
+    const labelEl = dropdown.querySelector(".country-select-label");
+    const searchInput = dropdown.querySelector(".country-select-search");
+    const optionsList = dropdown.querySelector(".country-select-options");
+
+    // Build option list
+    countries.forEach(country => {
+      const li = document.createElement("li");
+      li.className = "country-option";
+      li.dataset.value = country.cca3;
+      li.textContent = country.name.common;
+      optionsList.appendChild(li);
+
+      li.addEventListener("click", () => {
+        setSelectedCountry(key, country.cca3);
+        labelEl.textContent = country.name.common;
+
+        // Mark selected
+        optionsList.querySelectorAll(".country-option").forEach(opt => {
+          opt.classList.toggle("is-selected", opt === li);
+        });
+
+        closeAllDropdowns();
+        updateComparison();
+      });
+    });
+
+    // Toggle open/close
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains("open");
+      closeAllDropdowns();
+      if (!isOpen) {
+        dropdown.classList.add("open");
+        if (searchInput) {
+          searchInput.value = "";
+          searchInput.dispatchEvent(new Event("input"));
+          searchInput.focus();
+        }
+      }
+    });
+
+    // Search filter
+    if (searchInput) {
+      searchInput.addEventListener("input", () => {
+        const term = searchInput.value.toLowerCase();
+        optionsList.querySelectorAll(".country-option").forEach(li => {
+          const matches = li.textContent.toLowerCase().includes(term);
+          li.style.display = matches ? "flex" : "none";
+        });
+      });
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", () => {
+    closeAllDropdowns();
+  });
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll(".country-select.open").forEach(dd => {
+    dd.classList.remove("open");
+  });
+}
+
+function setSelectedCountry(key, code) {
+  selectedCountries[key] = code;
+
+  const dropdown = document.querySelector(`.country-select[data-key="${key}"]`);
+  if (!dropdown) return;
+
+  const labelEl = dropdown.querySelector(".country-select-label");
+  const optionsList = dropdown.querySelector(".country-select-options");
+
+  if (!code) {
+    if (labelEl) labelEl.textContent = "Select a country";
+    if (optionsList) {
+      optionsList.querySelectorAll(".country-option").forEach(opt => {
+        opt.classList.remove("is-selected");
+        opt.style.display = "flex";
+      });
+    }
+    return;
+  }
+
+  if (!optionsList) return;
+
+  const match = optionsList.querySelector(`.country-option[data-value="${code}"]`);
+  optionsList.querySelectorAll(".country-option").forEach(opt => {
+    opt.classList.toggle("is-selected", opt === match);
+  });
 }
