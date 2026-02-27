@@ -296,8 +296,8 @@ gap: 30px;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-15px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 1.25);
 }
 
 
@@ -339,8 +339,8 @@ gap: 30px;
   top: 15px;
   right: 15px;
 
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
 
   background: #ffffff;
   border: none;
@@ -362,10 +362,6 @@ gap: 30px;
   background: #f87171;
   color: white;
 }
-
-
-/* ===== Load more button ===== */
-
 .load-more {
   display: flex;
   justify-content: center;
@@ -376,19 +372,19 @@ gap: 30px;
   padding: 10px 20px;
   border-radius: 999px;
   border: none;
-  background-color: #0f766e;
+  background-color: #2b3b8a;
   color: #ffffff;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 550;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .load-more-button:hover {
-  background-color: #0d9488;
+  background-color: #303334;
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(15, 118, 110, 0.4);
+  box-shadow: 0 8px 22px rgba(117, 184, 246, 0.4);
 }
 
 /* comparison styles */
@@ -646,8 +642,8 @@ gap: 30px;
 }
 
 .country-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-7px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 1);
 }
 
 .country-flag {

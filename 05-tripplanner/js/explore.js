@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const PAGE_SIZE = 12;
 
-  const cardTemplate = templateElement.content
-    .querySelector(".card")
-    .cloneNode(true);
+  const cardTemplate = templateElement.content.querySelector(".card").cloneNode(true);
 
   templateElement.remove();
 

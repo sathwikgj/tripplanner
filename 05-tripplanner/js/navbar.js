@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   fetch("navbar.html")
-    .then((res) => res.text())
-    .then((data) => {
+    .then(res => res.text())
+    .then(data => {
       document.getElementById("navbar").innerHTML = data;
 
       const links = document.querySelectorAll(".nav-links a");
