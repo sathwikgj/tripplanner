@@ -30,31 +30,64 @@
      </div>
     <div class="compare-container">
 
-  <div class="country-box">
-    <label>Country 1</label>
-    <select id="country1">
-      <option value="">Select a country</option>
-    </select>
-    <button class="clear-btn" data-target="country1">Clear</button>
-  </div>
+      <div class="country-box">
+        <label>Country 1</label>
+        <div class="country-select" data-key="country1">
+          <button type="button" class="country-select-toggle">
+            <span class="country-select-label">Select a country</span>
+            <span class="country-select-arrow">▾</span>
+          </button>
+          <div class="country-select-dropdown">
+            <input
+              type="text"
+              class="country-select-search"
+              placeholder="Search countries..."
+            >
+            <ul class="country-select-options"></ul>
+          </div>
+        </div>
+        <button class="clear-btn" data-target="country1">Clear</button>
+      </div>
 
-  <div class="country-box">
-    <label>Country 2</label>
-    <select id="country2">
-      <option value="">Select a country</option>
-    </select>
-    <button class="clear-btn" data-target="country2">Clear</button>
-  </div>
+      <div class="country-box">
+        <label>Country 2</label>
+        <div class="country-select" data-key="country2">
+          <button type="button" class="country-select-toggle">
+            <span class="country-select-label">Select a country</span>
+            <span class="country-select-arrow">▾</span>
+          </button>
+          <div class="country-select-dropdown">
+            <input
+              type="text"
+              class="country-select-search"
+              placeholder="Search countries..."
+            >
+            <ul class="country-select-options"></ul>
+          </div>
+        </div>
+        <button class="clear-btn" data-target="country2">Clear</button>
+      </div>
 
-  <div class="country-box">
-    <label>Country 3 (optional)</label>
-    <select id="country3">
-      <option value="">Select a country</option>
-    </select>
-    <button class="clear-btn" data-target="country3">Clear</button>
-  </div>
+      <div class="country-box">
+        <label>Country 3 (optional)</label>
+        <div class="country-select" data-key="country3">
+          <button type="button" class="country-select-toggle">
+            <span class="country-select-label">Select a country</span>
+            <span class="country-select-arrow">▾</span>
+          </button>
+          <div class="country-select-dropdown">
+            <input
+              type="text"
+              class="country-select-search"
+              placeholder="Search countries..."
+            >
+            <ul class="country-select-options"></ul>
+          </div>
+        </div>
+        <button class="clear-btn" data-target="country3">Clear</button>
+      </div>
 
-</div>
+    </div>
 <div id="comparisonSection"></div>
     </div>
     <!-- <img src="images/emptypage.webp" alt="placeholder image" class="empty-placeholder"> -->
