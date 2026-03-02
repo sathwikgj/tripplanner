@@ -13,14 +13,53 @@
 <body>
 
   <header>
-    <!-- Navigation: Logo + links to Explore, Wishlist, Compare, Plan a Trip -->
+    <div id="navbar"></div>
   </header>
 
-  <main>
-    <!-- Back link to explore page -->
-    <!-- Country detail: flag, name, capital, region, subregion, population, area, languages, currencies, timezones -->
-    <!-- Add to wishlist button -->
-    <!-- Border countries section (clickable links) -->
+  <main class="country-page">
+    <div class="country-page-header">
+      <a href="explore.html" class="back-link">← Back to Explore</a>
+    </div>
+
+    <section class="country-layout" id="country-layout">
+      <div class="country-flag-wrapper">
+        <img id="country-flag" alt="Country flag" />
+      </div>
+
+      <div class="country-info">
+        <div class="country-title">
+          <h1 id="country-name"></h1>
+          <p id="country-native-name" class="country-native-name"></p>
+        </div>
+
+        <div class="country-stats">
+          <div class="country-column">
+            <p><span class="label">Capital:</span> <span id="country-capital"></span></p>
+            <p><span class="label">Region:</span> <span id="country-region"></span></p>
+            <p><span class="label">Subregion:</span> <span id="country-subregion"></span></p>
+            <p><span class="label">Population:</span> <span id="country-population"></span></p>
+          </div>
+
+          <div class="country-column">
+            <p><span class="label">Area:</span> <span id="country-area"></span></p>
+            <p><span class="label">Languages:</span> <span id="country-languages"></span></p>
+            <p><span class="label">Currencies:</span> <span id="country-currencies"></span></p>
+            <p><span class="label">Timezones:</span> <span id="country-timezones"></span></p>
+          </div>
+        </div>
+
+        <button id="wishlist-toggle" class="wishlist-toggle-btn">
+          ♡ In Wishlist
+        </button>
+      </div>
+    </section>
+
+    <section class="border-section">
+      <h2>Border Countries</h2>
+      <div id="border-countries" class="border-list"></div>
+    </section>
+
+    <section id="country-error" class="country-error" hidden></section>
   </main>
 
   <footer class="footer">
@@ -28,5 +67,6 @@
   </footer>
 
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
