@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("https://restcountries.com/v3.1/all?fields=name,cca3")
     .then(res => res.json())
     .then(data => {
-      // Sort alphabetically
       data.sort((a, b) =>
         a.name.common.localeCompare(b.name.common)
       );
@@ -33,7 +32,7 @@ document.querySelectorAll(".clear-btn").forEach(btn => {
     if (!key) return;
 
     setSelectedCountry(key, "");
-    updateComparison(); // re-render table
+    updateComparison();
   });
 });
 

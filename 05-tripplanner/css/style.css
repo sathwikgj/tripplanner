@@ -888,16 +888,6 @@ footer {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /* planner css */
 /* ===== Planner Page ===== */
 
@@ -1080,6 +1070,8 @@ footer {
 
 .planner-empty-icon {
   font-size: 2rem;
+}
+
 /* ===== Country detail page ===== */
 
 .country-page {
@@ -1249,5 +1241,5 @@ footer {
   background-color: #fee2e2;
   color: #b91c1c;
   font-size: 14px;
->>>>>>> 31402b083c31994d340a3071f2d8cad48868262e
 }
+
