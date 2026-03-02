@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-page="planner">
+<html lang="en" data-page="itinerary">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,35 +23,76 @@
         <h1>Trip Itinerary</h1>
         <p>Plan your day-by-day schedule. Drag activities to reorder or move between days.</p>
       </div>
-      <!-- <div id="itineraryList"></div> -->
 
-  <div class="trip-section">
+      <section class="trip-section">
+        <div class="field">
+          <label for="itinerary-trip-name">Trip Name</label>
+          <input
+            id="itinerary-trip-name"
+            type="text"
+            placeholder="e.g., Japan Spring Trip"
+          >
+        </div>
 
-  <div class="field">
-    <label>Trip Name</label>
-    <input type="text" placeholder="e.g., Japan Spring Trip">
-  </div>
+        <div class="field">
+          <label for="itinerary-destination">Destination</label>
+          <input
+            id="itinerary-destination"
+            type="text"
+            placeholder="e.g., Tokyo, Japan"
+          >
+        </div>
 
-  <div class="field">
-    <label>Destination</label>
-    <input type="text" placeholder="e.g., Tokyo, Japan">
-  </div>
+        <div class="field">
+          <label for="itinerary-daily-budget">Daily Budget</label>
+          <div class="budget-input">
+            <span>$</span>
+            <input
+              id="itinerary-daily-budget"
+              type="number"
+              value="150"
+              min="0"
+              step="10"
+            >
+          </div>
+        </div>
+      </section>
 
-  <div class="field">
-    <label>Daily Budget</label>
-    <div class="budget-input">
-      <span>$</span>
-      <input 
-        type="number" 
-        value="150" 
-        min="0" 
-        step="10"
-      >
+      <section class="days-section">
+        <div id="days-container" class="days-container"></div>
+        <button id="add-day-btn" class="primary-btn full-width-btn">
+          + Add Day
+        </button>
+      </section>
+
+      <section class="budget-overview-card">
+        <h2>Budget Overview</h2>
+        <div id="budget-days" class="budget-days"></div>
+        <div class="budget-total-row">
+          <span>Total Spent /
+            <span id="budget-total-budget">$0.00 budget</span>
+          </span>
+          <span id="budget-total-spent" class="budget-total-spent">$0.00</span>
+        </div>
+      </section>
+
+      <section class="itinerary-actions">
+        <button id="save-itinerary-btn" class="primary-btn">
+          💾 Save Itinerary
+        </button>
+        <button id="clear-itinerary-btn" class="ghost-btn">
+          Clear All
+        </button>
+      </section>
+
+      <section class="saved-itineraries-section">
+        <h2>Saved Itineraries</h2>
+        <div id="saved-itineraries" class="saved-itineraries-list"></div>
+        <p id="saved-empty" class="saved-empty-text">
+          No saved itineraries yet. Create one above!
+        </p>
+      </section>
     </div>
-  </div>
-
-</div>
-      
   </main>
 
  <footer class="footer">
