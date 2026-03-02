@@ -1,87 +1,228 @@
-// Planner page — trip form with country selection from wishlist, dates, notes, save/delete trips
-const form = document.getElementById("plannerForm");
-const tripListContainer = document.getElementById("tripListContainer");
-const emptyStateBox = document.getElementById("emptyStateBox");
+// Planner page — dropdown/search should list countries from wishlist (localStorage)
+document.addEventListener("DOMContentLoaded", () => {
+  const htmlEl = document.documentElement;
+  if (!htmlEl || htmlEl.dataset.page !== "planner") return;
 
-const tripNameInput = document.getElementById("tripNameInput");
-const countrySelectInput = document.getElementById("countrySelectInput");
-const startDateInput = document.getElementById("startDateInput");
-const endDateInput = document.getElementById("endDateInput");
-const tripNotesInput = document.getElementById("tripNotesInput");
+  const toggle = document.getElementById("countryDropdownToggle");
+  const menu = document.getElementById("countryDropdownMenu");
+  const searchInput = document.getElementById("countrySearchInput");
+  const listContainer = document.getElementById("countryListContainer");
+  const selectedText = document.getElementById("selectedCountriesText");
 
-/* Load trips from localStorage */
-let trips = JSON.parse(localStorage.getItem("trips")) || [];
+  if (!toggle || !menu || !searchInput || !listContainer || !selectedText) return;
 
-/* Render trips */
-function renderTrips() {
+  const WISHLIST_KEY = "wishlist";
 
-  tripListContainer.innerHTML = "";
+  function getWishlist() {
+    const raw = JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+    // Support both shapes:
+    // - string[]  (["India", "Japan"])
+    // - object[]  ([{ name: "India", cca3: "IND", ... }])
+    return Array.isArray(raw) ? raw : [];
+  }
 
-  if (trips.length === 0) {
-    emptyStateBox.style.display = "flex";
+  function getCountryName(item) {
+    if (!item) return "";
+    if (typeof item === "string") return item;
+    if (typeof item.name === "string") return item.name;
+    // fallback: sometimes name might be nested (defensive)
+    if (item.name && typeof item.name.common === "string") return item.name.common;
+    return "";
+  }
+
+  let selected = new Set();
+
+  function updateSelectedText() {
+    const names = Array.from(selected);
+    selectedText.textContent = names.length ? names.join(", ") : "Select countries";
+  }
+
+  function renderList(filterText = "") {
+    const wishlist = getWishlist();
+    const q = filterText.trim().toLowerCase();
+
+    const names = wishlist
+      .map(getCountryName)
+      .filter(Boolean)
+      .filter((name) => name.toLowerCase().includes(q));
+
+    listContainer.innerHTML = "";
+
+    if (names.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "planner-empty-msg";
+      empty.textContent = "No countries in wishlist. Add some first!";
+      listContainer.appendChild(empty);
+      return;
+    }
+
+    names.forEach((name) => {
+      const label = document.createElement("label");
+      label.className = "planner-country-item";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = selected.has(name);
+
+      const text = document.createElement("span");
+      text.textContent = name;
+
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) selected.add(name);
+        else selected.delete(name);
+        updateSelectedText();
+      });
+
+      label.appendChild(checkbox);
+      label.appendChild(text);
+      listContainer.appendChild(label);
+    });
+  }
+
+  // Open/close dropdown
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("show");
+    if (menu.classList.contains("show")) {
+      renderList(searchInput.value);
+      searchInput.focus();
+    }
+  });
+
+  // Filter as user types
+  searchInput.addEventListener("input", () => {
+    renderList(searchInput.value);
+  });
+
+  // Close if clicked outside
+  document.addEventListener("click", (e) => {
+    if (toggle.contains(e.target) || menu.contains(e.target)) return;
+    menu.classList.remove("show");
+  });
+
+  updateSelectedText();
+  renderList("");
+
+  // ===== Trips: save, list, delete =====
+  const form = document.getElementById("plannerForm");
+  const tripListContainer = document.getElementById("tripListContainer");
+  const emptyStateBox = document.getElementById("emptyStateBox");
+  const tripNameInput = document.getElementById("tripNameInput");
+  const startDateInput = document.getElementById("startDateInput");
+  const endDateInput = document.getElementById("endDateInput");
+  const tripNotesInput = document.getElementById("tripNotesInput");
+
+  if (
+    !form ||
+    !tripListContainer ||
+    !emptyStateBox ||
+    !tripNameInput ||
+    !startDateInput ||
+    !endDateInput ||
+    !tripNotesInput
+  ) {
     return;
   }
 
-  emptyStateBox.style.display = "none";
+  const TRIPS_KEY = "trips";
+  let trips = JSON.parse(localStorage.getItem(TRIPS_KEY)) || [];
 
-  trips.forEach((trip, index) => {
+  function saveTrips() {
+    localStorage.setItem(TRIPS_KEY, JSON.stringify(trips));
+  }
 
-    const card = document.createElement("div");
-    card.className = "planner-trip-card";
-    card.style.display = "flex";
-    card.style.flexDirection = "column";
-    card.style.gap = "0.5rem";
-    card.style.padding = "1rem";
-    card.style.border = "1px solid #e5e7eb";
-    card.style.borderRadius = "0.5rem";
+  function formatDate(isoDate) {
+    if (!isoDate || typeof isoDate !== "string") return "";
+    const [yyyy, mm, dd] = isoDate.split("-");
+    if (!yyyy || !mm || !dd) return isoDate;
+    return `${dd}/${mm}/${yyyy}`;
+  }
 
-    card.innerHTML = `
-      <strong>${trip.name}</strong>
-      <span>Countries: ${trip.countries}</span>
-      <span>${trip.startDate} → ${trip.endDate}</span>
-      <span>${trip.notes}</span>
-      <button data-index="${index}" style="padding:0.5rem; border:none; background:#ef4444; color:white; border-radius:0.4rem; cursor:pointer;">Delete</button>
-    `;
+  function renderTrips() {
+    tripListContainer.innerHTML = "";
 
-    tripListContainer.appendChild(card);
+    if (!Array.isArray(trips) || trips.length === 0) {
+      emptyStateBox.style.display = "flex";
+      return;
+    }
+
+    emptyStateBox.style.display = "none";
+
+    trips.forEach((trip) => {
+      const card = document.createElement("article");
+      card.className = "planner-trip-card";
+
+      card.innerHTML = `
+        <header class="planner-trip-header">
+          <h3 class="planner-trip-title">${trip.name}</h3>
+          <button class="planner-trip-delete" data-id="${trip.id}" aria-label="Delete trip">🗑</button>
+        </header>
+        <div class="planner-trip-body">
+          <div class="planner-trip-row">
+            <span class="label">Dates:</span>
+            <span>${formatDate(trip.startDate)} - ${formatDate(trip.endDate)}</span>
+          </div>
+          <div class="planner-trip-row">
+            <span class="label">Countries:</span>
+            <div class="planner-trip-countries">
+              ${(trip.countries || [])
+                .map((name) => `<span class="planner-country-pill">${name}</span>`)
+                .join("")}
+            </div>
+          </div>
+          <div class="planner-trip-row">
+            <span class="label">Notes:</span>
+            <span class="planner-trip-notes">${trip.notes || "No notes added."}</span>
+          </div>
+        </div>
+      `;
+
+      tripListContainer.appendChild(card);
+    });
+
+    // Wire delete buttons
+    tripListContainer
+      .querySelectorAll(".planner-trip-delete")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          trips = trips.filter((trip) => String(trip.id) !== String(id));
+          saveTrips();
+          renderTrips();
+        });
+      });
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = tripNameInput.value.trim();
+    const start = startDateInput.value;
+    const end = endDateInput.value;
+    const notes = tripNotesInput.value.trim();
+    const countries = Array.from(selected);
+
+    if (!name || !start || !end || countries.length === 0) {
+      alert("Please fill all fields and select at least one country.");
+      return;
+    }
+
+    const newTrip = {
+      id: Date.now(),
+      name,
+      startDate: start,
+      endDate: end,
+      notes,
+      countries,
+    };
+
+    trips.push(newTrip);
+    saveTrips();
+
+    form.reset();
+    selected = new Set();
+    updateSelectedText();
+    renderTrips();
   });
-}
-
-/* Save trip */
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const selectedCountries = Array.from(countrySelectInput.selectedOptions)
-                                 .map(option => option.value)
-                                 .join(", ");
-
-  const newTrip = {
-    name: tripNameInput.value,
-    countries: selectedCountries,
-    startDate: startDateInput.value,
-    endDate: endDateInput.value,
-    notes: tripNotesInput.value
-  };
-
-  trips.push(newTrip);
-
-  localStorage.setItem("trips", JSON.stringify(trips));
-
-  form.reset();
 
   renderTrips();
 });
-
-/* Delete trip */
-tripListContainer.addEventListener("click", function(e){
-
-  if (e.target.tagName === "BUTTON") {
-    const index = e.target.getAttribute("data-index");
-    trips.splice(index, 1);
-    localStorage.setItem("trips", JSON.stringify(trips));
-    renderTrips();
-  }
-});
-
-/* Initial Load */
-renderTrips();

@@ -14,140 +14,127 @@
 <body>
 
   <header>
-    <!-- Navigation: Logo + links to Explore, Wishlist, Compare, Plan a Trip -->
-     
     <div id="navbar"></div>
-
   </header>
 
-  < class="planner">
-    <!-- Page title and description -->
-    <!-- Trip form: name input, country selector (from wishlist), start date, end date, notes textarea -->
-    <!-- Save trip button -->
-    <!-- Saved trips list with delete -->
-    <!-- Empty state when no trips exist -->
-     <!-- Header Section -->
-  <section class="planner-header-sec">
-    <h1 class="planner-title-text">Plan Your Trip</h1>
-    <p class="planner-sub-text">
-      Create an itinerary from your wishlisted countries. Add dates, notes, and save your trip plans.
-    </p>
-  </section>
+  <main class="planner">
+    <!-- Header Section -->
+    <section class="planner-header-sec">
+      <h1 class="planner-title-text">Plan Your Trip</h1>
+      <p class="planner-sub-text">
+        Create an itinerary from your wishlisted countries. Add dates, notes, and save your trip plans.
+      </p>
+    </section>
 
-  <!-- Form Card -->
-  <section class="planner-form-card">
+    <!-- Form Card -->
+    <section class="planner-form-card">
+      <h2 class="planner-card-heading">Create New Trip</h2>
 
-    <h2 class="planner-card-heading">Create New Trip</h2>
+      <form id="plannerForm" class="planner-grid-layout">
+        <!-- Trip Name -->
+        <div class="planner-field-group">
+          <label for="tripNameInput">Trip Name</label>
+          <input
+            type="text"
+            id="tripNameInput"
+            class="planner-input-box"
+            placeholder="e.g., European Adventure"
+            required
+          >
+        </div>
 
-    <form id="plannerForm" class="planner-grid-layout">
+        <!-- Countries -->
+        <div class="planner-field-group">
+          <label>Countries (from wishlist)</label>
 
-      <!-- Trip Name -->
-      <div class="planner-field-group">
-        <label for="tripNameInput">Trip Name</label>
-        <input type="text"
-               id="tripNameInput"
-               class="planner-input-box"
-               placeholder="e.g., European Adventure"
-               required>
-      </div>
-
-      <!-- Countries -->
-      <div class="planner-field-group">
-        <label>Countries (from wishlist)</label>
-
-        <div class="planner-country-dropdown">
-
-          <!-- Select Box -->
-          <div class="planner-country-select" id="countryDropdownToggle">
-            <span id="selectedCountriesText">Select countries</span>
-            <span class="planner-arrow">⌄</span>
-          </div>
-
-          <!-- Dropdown Menu -->
-          <div class="planner-country-menu" id="countryDropdownMenu">
-
-            <!-- Search -->
-            <div class="planner-country-search">
-              <input type="text"
-                     id="countrySearchInput"
-                     placeholder="Search wishlist...">
+          <div class="planner-country-dropdown">
+            <!-- Select Box -->
+            <div class="planner-country-select" id="countryDropdownToggle">
+              <span id="selectedCountriesText">Select countries</span>
+              <span class="planner-arrow">⌄</span>
             </div>
 
-            <!-- Country List (JS will render here) -->
-            <div class="planner-country-list" id="countryListContainer">
-              <div class="planner-empty-msg">
-                No countries in wishlist. Add some first!
+            <!-- Dropdown Menu -->
+            <div class="planner-country-menu" id="countryDropdownMenu">
+              <!-- Search -->
+              <div class="planner-country-search">
+                <input
+                  type="text"
+                  id="countrySearchInput"
+                  placeholder="Search wishlist..."
+                >
+              </div>
+
+              <!-- Country List (JS will render here) -->
+              <div class="planner-country-list" id="countryListContainer">
+                <div class="planner-empty-msg">
+                  No countries in wishlist. Add some first!
+                </div>
               </div>
             </div>
-
           </div>
-
         </div>
+
+        <!-- Start Date -->
+        <div class="planner-field-group">
+          <label for="startDateInput">Start Date</label>
+          <input
+            type="date"
+            id="startDateInput"
+            lang="en-GB"
+            class="planner-input-box"
+            required
+          >
+        </div>
+
+        <!-- End Date -->
+        <div class="planner-field-group">
+          <label for="endDateInput">End Date</label>
+          <input
+            type="date"
+            id="endDateInput"
+            lang="en-GB"
+            class="planner-input-box"
+            required
+          >
+        </div>
+
+        <!-- Notes -->
+        <div class="planner-field-group planner-full-width">
+          <label for="tripNotesInput">Notes</label>
+          <textarea
+            id="tripNotesInput"
+            class="planner-textarea-box"
+            placeholder="Add any notes about your trip..."
+          ></textarea>
+        </div>
+
+        <!-- Button -->
+        <div class="planner-button-wrap planner-full-width">
+          <button type="submit" class="planner-save-btn">
+            + Save Trip
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Trips Section -->
+    <section class="planner-trips-section">
+      <h2 class="planner-trips-heading">Your Trips</h2>
+
+      <div id="tripListContainer" class="planner-trips-list">
+        <!-- JS will render trips here -->
       </div>
 
-      <!-- Start Date -->
-      <div class="planner-field-group">
-        <label for="startDateInput">Start Date</label>
-        <input type="date"
-               id="startDateInput"
-               class="planner-input-box"
-               required>
+      <!-- Empty State -->
+      <div id="emptyStateBox" class="planner-empty-state">
+        <div class="planner-empty-icon">📅</div>
+        <p class="planner-empty-title">No trips planned yet</p>
+        <p class="planner-empty-subtitle">
+          Create your first trip using the form above.
+        </p>
       </div>
-
-      <!-- End Date -->
-      <div class="planner-field-group">
-        <label for="endDateInput">End Date</label>
-        <input type="date"
-               id="endDateInput"
-               class="planner-input-box"
-               required>
-      </div>
-
-      <!-- Notes -->
-      <div class="planner-field-group planner-full-width">
-        <label for="tripNotesInput">Notes</label>
-        <textarea id="tripNotesInput"
-                  class="planner-textarea-box"
-                  placeholder="Add any notes about your trip..."></textarea>
-      </div>
-
-      <!-- Button -->
-      <div class="planner-button-wrap planner-full-width">
-        <button type="submit" class="planner-save-btn">
-          + Save Trip
-        </button>
-      </div>
-
-    </form>
-
-  </section>
-
-  <!-- Trips Section -->
-  <section class="planner-trips-section">
-
-    <h2 class="planner-trips-heading">Your Trips</h2>
-
-    <div id="tripListContainer" class="planner-trips-list">
-      <!-- JS will render trips here -->
-    </div>
-
-    <!-- Empty State -->
-    <div id="emptyStateBox" class="planner-empty-state">
-      <div class="planner-empty-icon">📅</div>
-      <p class="planner-empty-title">No trips planned yet</p>
-      <p class="planner-empty-subtitle">
-        Create your first trip using the form above.
-      </p>
-    </div>
-
-  </section>
-
-
-     
-
-
-  
-
+    </section>
   </main>
 
   <footer class="footer">

@@ -896,6 +896,8 @@ footer {
   flex-direction: column;
   gap: 2rem;
   padding: 2rem 5%;
+  max-width: 1200px;
+  margin: 40px auto 60px;
 }
 
 /* Header Section */
@@ -960,6 +962,30 @@ footer {
   width: 100%;
 }
 
+.planner-input-box:focus,
+.planner-textarea-box:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+/* Date input styling (native calendar) */
+.planner-input-box[type="date"] {
+  accent-color: #0f766e;
+  color-scheme: light;
+}
+
+.planner-input-box[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.85;
+  filter: invert(33%) sepia(23%) saturate(1467%) hue-rotate(131deg)
+    brightness(92%) contrast(94%);
+}
+
+.planner-input-box[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
 .planner-textarea-box {
   min-height: 6rem;
   resize: none;
@@ -1012,10 +1038,35 @@ footer {
 }
 
 .planner-country-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  position: relative;
+  display: block;
   font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.planner-country-item input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.planner-country-item span {
+  display: block;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.planner-country-item:hover span {
+  background-color: #f1f5f9;
+}
+
+.planner-country-item input:checked + span {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-weight: 500;
 }
 
 .planner-empty-msg {
@@ -1026,17 +1077,21 @@ footer {
 /* Button */
 .planner-button-wrap {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .planner-save-btn {
   padding: 0.8rem 1.5rem;
   border-radius: 0.6rem;
   border: none;
-  background: #4f46e5;
+  background: #0f766e;
   color: #fff;
   font-size: 0.95rem;
   cursor: pointer;
+}
+
+.planner-save-btn:hover {
+  background: #115e59;
 }
 
 /* Trips Section */
@@ -1055,6 +1110,78 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+/* Trip card */
+.planner-trip-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.planner-trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  background-color: #e0f2fe;
+}
+
+.planner-trip-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.planner-trip-delete {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+.planner-trip-delete:hover {
+  color: #ef4444;
+}
+
+.planner-trip-body {
+  padding: 1.1rem 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.planner-trip-row {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.planner-trip-row .label {
+  font-weight: 600;
+  color: #111827;
+}
+
+.planner-trip-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.planner-country-pill {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.8rem;
+}
+
+.planner-trip-notes {
+  white-space: pre-wrap;
 }
 
 .planner-empty-state {

@@ -3,8 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("wishlist-grid");
   const count = document.getElementById("wishlist-count");
   const empty = document.getElementById("empty-state");
+  const planButton = document.querySelector(".btn-plan");
 
   if (!grid || !count || !empty) return;
+
+  if (planButton) {
+    planButton.addEventListener("click", () => {
+      window.location.href = "planner.html";
+    });
+  }
 
   const WISHLIST_KEY = "wishlist";
 
