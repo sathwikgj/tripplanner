@@ -50,6 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="btn-remove" title="Remove from wishlist">♥</button>
       `;
 
+      // navigate to country details when clicking the card (but not the remove button)
+      card.addEventListener("click", (event) => {
+        if (event.target.closest(".btn-remove")) return;
+        if (!country.cca3) return;
+        window.location.href = `country.html?code=${encodeURIComponent(
+          country.cca3
+        )}`;
+      });
+
       // remove from wishlist
       card.querySelector(".btn-remove").addEventListener("click", () => {
         const updated = getWishlist().filter((c) => c.cca3 !== country.cca3);
