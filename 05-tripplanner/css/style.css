@@ -886,3 +886,198 @@ footer {
   box-shadow: 0 0 0 3px rgba(15,118,110,0.15);
   border-color: #0f766e;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* planner css */
+/* ===== Planner Page ===== */
+
+.planner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 5%;
+}
+
+/* Header Section */
+.planner-header-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.planner-title-text {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.planner-sub-text {
+  font-size: 1rem;
+  color: #555;
+  max-width: 60%;
+}
+
+/* Form Card */
+.planner-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.planner-card-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Grid Layout */
+.planner-grid-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.planner-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 48%;
+}
+
+.planner-full-width {
+  width: 100%;
+}
+
+/* Inputs */
+.planner-input-box,
+.planner-textarea-box {
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.planner-textarea-box {
+  min-height: 6rem;
+  resize: none;
+}
+
+/* Country Dropdown */
+.planner-country-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.planner-country-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #fff;
+}
+
+.planner-country-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 0.6rem;
+  padding: 0.8rem;
+  background: #fff;
+}
+
+.planner-country-menu.show {
+  display: flex;
+}
+
+.planner-country-search input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.planner-country-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.planner-country-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.planner-empty-msg {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Button */
+.planner-button-wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.planner-save-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.6rem;
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* Trips Section */
+.planner-trips-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.planner-trips-heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.planner-trips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.planner-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px dashed #ccc;
+  text-align: center;
+}
+
+.planner-empty-icon {
+  font-size: 2rem;
+}
