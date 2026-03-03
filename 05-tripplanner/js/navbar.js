@@ -29,6 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (badge) {
         function updateWishlistCount() {
+          const currentUser = getCurrentUser();
+          if (!currentUser) {
+            badge.style.display = "none";
+            badge.textContent = "";
+            return;
+          }
+
           const key = makeUserKey("wishlist");
           const list = JSON.parse(localStorage.getItem(key)) || [];
           const total = list.length;
