@@ -61,10 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         logoutButton.addEventListener("click", () => {
           localStorage.removeItem("currentUser");
-          syncAuthUi();
-          if (window.updateWishlistCount) {
-            window.updateWishlistCount();
-          }
+          // Full reload so all pages re-read user-specific data
+          window.location.reload();
         });
 
         syncAuthUi();
