@@ -197,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
           trips = trips.filter((trip) => String(trip.id) !== String(id));
           saveTrips();
           renderTrips();
+          if (window.showToast) {
+            window.showToast("info", "Trip deleted");
+          }
         });
       });
   }
@@ -211,7 +214,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const countries = Array.from(selected);
 
     if (!name || !start || !end || countries.length === 0) {
-      alert("Please fill all fields and select at least one country.");
+      if (window.showToast) {
+        window.showToast(
+          "error",
+          "Please fill all fields and select at least one country."
+        );
+      } else {
+        alert("Please fill all fields and select at least one country.");
+      }
       return;
     }
 
@@ -231,6 +241,9 @@ document.addEventListener("DOMContentLoaded", () => {
     selected = new Set();
     updateSelectedText();
     renderTrips();
+    if (window.showToast) {
+      window.showToast("success", "Trip saved");
+    }
   });
 
   renderTrips();

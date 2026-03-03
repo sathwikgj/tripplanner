@@ -83,6 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.updateWishlistCount) {
           window.updateWishlistCount();
         }
+        if (window.showToast) {
+          window.showToast(
+            "info",
+            `Removed ${country.name} from wishlist`
+          );
+        }
       });
 
       grid.appendChild(card);

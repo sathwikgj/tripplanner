@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const userLabel = document.getElementById("nav-user-label");
       const loginLink = document.getElementById("nav-login-link");
       const logoutButton = document.getElementById("nav-logout-button");
+      const nav = document.querySelector(".navbar");
+      const navToggle = document.getElementById("nav-toggle");
 
       if (badge) {
         function updateWishlistCount() {
@@ -52,6 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.updateWishlistCount = updateWishlistCount;
       }
 
+      if (nav && navToggle) {
+        navToggle.addEventListener("click", () => {
+          nav.classList.toggle("nav-open");
+        });
+      }
+
       if (userLabel && loginLink && logoutButton) {
         function syncAuthUi() {
           const user = getCurrentUser();
@@ -68,6 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         logoutButton.addEventListener("click", () => {
           localStorage.removeItem("currentUser");
+          if (window.updateWishlistCount) {
+            window.updateWishlistCount();
+          }
+          if (window.showToast) {
+            window.showToast("info", "Signed out");
+          }
           // Full reload so all pages re-read user-specific data
           window.location.reload();
         });

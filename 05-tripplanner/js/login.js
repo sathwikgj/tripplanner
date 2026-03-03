@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     messageEl.textContent = text;
     messageEl.classList.toggle("auth-message-error", isError);
     messageEl.classList.toggle("auth-message-success", !isError && !!text);
+    if (window.showToast && text) {
+      window.showToast(isError ? "error" : "success", text);
+    }
   }
 
   function switchMode(nextMode) {

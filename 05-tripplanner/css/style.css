@@ -120,6 +120,28 @@ display: flex;
 gap: 30px;
 }
 
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 6px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #0f172a;
+}
+
 .nav-links a{
   text-decoration: none;
   color:#1f2937;
@@ -1988,4 +2010,150 @@ footer {
   color: #b91c1c;
   font-size: 14px;
 }
+
+/* ===== Responsive adjustments ===== */
+
+/* Tablets (≤ 1024px) */
+@media (max-width: 1024px) {
+  .nav-container {
+    width: 95%;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero input {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .compare-container {
+    flex-direction: column;
+  }
+
+  .country-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-grid-layout {
+    flex-direction: column;
+  }
+
+  .planner-field-group {
+    width: 100%;
+  }
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .nav-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 10px 16px 14px;
+    margin: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 20;
+  }
+
+  .nav-open .nav-links {
+    display: flex;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toolbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .countries,
+  .wishlist-list {
+    justify-content: center;
+  }
+
+  .card,
+  .country-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .wishlist-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trip-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .itinerary-actions {
+    flex-direction: column;
+  }
+
+  .activity-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .planner {
+    padding: 1.5rem 1rem;
+  }
+
+  .planner-sub-text {
+    max-width: 100%;
+  }
+
+  .planner-form-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .country-page {
+    padding: 0 16px 40px;
+  }
+
+  .country-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .toast-container {
+    right: 12px;
+    left: 12px;
+  }
+
+  .toast {
+    max-width: 100%;
+  }
+
+  .comparison-container {
+    max-width: 100%;
+    padding: 24px 16px 40px;
+  }
+}
+
 

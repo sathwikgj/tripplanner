@@ -201,6 +201,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (alreadyExists) {
           list = list.filter((c) => c.cca3 !== country.cca3);
           heartBtn.textContent = "♡";
+          if (window.showToast) {
+            window.showToast(
+              "info",
+              `Removed ${country.name.common} from wishlist`
+            );
+          }
         } else {
           list.push({
             cca3: country.cca3,
@@ -213,6 +219,12 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           heartBtn.textContent = "♥";
+          if (window.showToast) {
+            window.showToast(
+              "success",
+              `Added ${country.name.common} to wishlist`
+            );
+          }
         }
 
         saveWishlist(list);
