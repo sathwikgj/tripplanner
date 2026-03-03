@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-page="login">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripPlanner — Login</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <!-- <div id="navbar"></div> -->
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card">
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-subtitle">Sign in to access your wishlist, trips, and itineraries.</p>
+
+      <form id="auth-form" class="auth-form">
+        <div class="auth-toggle">
+          <button type="button" id="login-toggle" class="auth-toggle-btn auth-toggle-btn-active">
+            Login
+          </button>
+          <button type="button" id="register-toggle" class="auth-toggle-btn">
+            Register
+          </button>
+        </div>
+
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            autocomplete="username"
+            required
+            placeholder="Choose a username"
+          >
+        </div>
+
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            placeholder="Enter your password"
+          >
+        </div>
+
+        <p id="auth-message" class="auth-message" aria-live="polite"></p>
+
+        <button type="submit" class="primary-btn auth-submit-btn">
+          Continue
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- <footer class="footer">
+    <div class="footer-text">&copy;2026 TripPlanner. Built for learning JavaScript.</div>
+  </footer> -->
+
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/navbar.js"></script>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
+

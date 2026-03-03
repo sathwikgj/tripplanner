@@ -38,7 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const STORAGE_KEY = "tripPlanner_itineraries";
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || null;
+  }
+
+  function makeUserKey(base) {
+    const user = getCurrentUser();
+    return user ? `${base}_${user}` : base;
+  }
+
+  const STORAGE_KEY = makeUserKey("tripPlanner_itineraries");
 
   let toastContainer = document.getElementById("toast-container");
   if (!toastContainer) {

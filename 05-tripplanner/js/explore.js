@@ -10,6 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || null;
+  }
+
+  function makeUserKey(base) {
+    const user = getCurrentUser();
+    return user ? `${base}_${user}` : base;
+  }
+
   const API_URL =
     "https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags,cca3,area";
 
@@ -169,11 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
       areaEl.textContent = `Area: ${formatNumber(country.area)} km²`;
     }
 
-    // ✅ ===== Wishlist Logic (FIXED - INSIDE createCountryCard) =====
     const heartBtn = card.querySelector(".heart");
 
     if (heartBtn) {
-      const WISHLIST_KEY = "wishlist";
+      const WISHLIST_KEY = makeUserKey("wishlist");
 
       function getWishlist() {
         return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
@@ -183,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
       }
 
-      // set initial state
       const exists = getWishlist().some((c) => c.cca3 === country.cca3);
       heartBtn.textContent = exists ? "♥" : "♡";
 
@@ -214,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-    // ✅ ===== End Wishlist Logic =====
 
     return card;
   }

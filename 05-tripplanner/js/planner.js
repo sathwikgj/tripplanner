@@ -11,7 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!toggle || !menu || !searchInput || !listContainer || !selectedText) return;
 
-  const WISHLIST_KEY = "wishlist";
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || null;
+  }
+
+  function makeUserKey(base) {
+    const user = getCurrentUser();
+    return user ? `${base}_${user}` : base;
+  }
+
+  const WISHLIST_KEY = makeUserKey("wishlist");
 
   function getWishlist() {
     const raw = JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
@@ -123,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const TRIPS_KEY = "trips";
+  const TRIPS_KEY = makeUserKey("trips");
   let trips = JSON.parse(localStorage.getItem(TRIPS_KEY)) || [];
 
   function saveTrips() {

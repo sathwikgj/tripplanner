@@ -46,6 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || null;
+  }
+
+  function makeUserKey(base) {
+    const user = getCurrentUser();
+    return user ? `${base}_${user}` : base;
+  }
+
   const FIELDS =
     "name,capital,region,subregion,population,area,flags,cca3,borders,languages,currencies,timezones";
 
@@ -53,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     code
   )}?fields=${FIELDS}`;
 
-  const WISHLIST_KEY = "wishlist";
+  const WISHLIST_KEY = makeUserKey("wishlist");
 
   function getWishlist() {
     return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];

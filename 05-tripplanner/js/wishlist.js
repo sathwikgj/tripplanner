@@ -13,7 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const WISHLIST_KEY = "wishlist";
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || null;
+  }
+
+  function makeUserKey(base) {
+    const user = getCurrentUser();
+    return user ? `${base}_${user}` : base;
+  }
+
+  const WISHLIST_KEY = makeUserKey("wishlist");
 
   function getWishlist() {
     return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
