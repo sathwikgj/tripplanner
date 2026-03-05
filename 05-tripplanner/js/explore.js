@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const regionButtons = document.querySelectorAll("[data-region]");
   const templateElement = document.getElementById("country-card-template");
   const sortSelect = document.getElementById("sort-select");
+  const searchInput = document.querySelector(".hero input[type='text']");
 
   if (!grid || !countText || !loadMoreButton || !templateElement) {
     return;
@@ -32,11 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentRegion = "all";
   let visibleCount = PAGE_SIZE;
   let currentSort = "name-asc";
+  let searchTerm = "";
 
   loadCountries();
   setupRegionButtons();
   setupLoadMoreButton();
   setupSortSelect();
+  setupSearch();
 
   async function loadCountries() {
     try {
@@ -87,6 +90,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function setupSearch() {
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", () => {
+      searchTerm = searchInput.value.trim().toLowerCase();
+      visibleCount = PAGE_SIZE;
+      showCountries();
+    });
+  }
+
   function getCountriesForCurrentRegion() {
     if (currentRegion === "all") {
       return allCountries;
@@ -95,8 +108,29 @@ document.addEventListener("DOMContentLoaded", () => {
     return allCountries.filter((country) => country.region === currentRegion);
   }
 
+  function getCountriesForCurrentFilters() {
+    const byRegion = getCountriesForCurrentRegion();
+
+    if (!searchTerm) {
+      return byRegion;
+    }
+
+    return byRegion.filter((country) => {
+      const name = country.name?.common?.toLowerCase() || "";
+      const capital =
+        country.capital && country.capital.length > 0
+          ? country.capital[0].toLowerCase()
+          : "";
+
+      return (
+        name.includes(searchTerm) ||
+        capital.includes(searchTerm)
+      );
+    });
+  }
+
   function showCountries() {
-    const filtered = sortCountries(getCountriesForCurrentRegion().slice());
+    const filtered = sortCountries(getCountriesForCurrentFilters().slice());
     const visibleCountries = filtered.slice(0, visibleCount);
 
     grid.innerHTML = "";
