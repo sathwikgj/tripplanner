@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const USERS_KEY = "users";
   const CURRENT_USER_KEY = "currentUser";
 
-  let mode = "login"; // "login" | "register"
+  let mode = "login"; 
 
   function getUsers() {
     const raw = localStorage.getItem(USERS_KEY);

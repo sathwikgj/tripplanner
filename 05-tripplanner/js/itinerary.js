@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const showToast =
     window.showToast ||
     function noopToast() {
-      // fallback: do nothing if global toast is unavailable
+  
     };
 
   let itinerary = {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let savedItineraries =
     JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]") || [];
 
-  let dragState = null; // { dayId, activityId }
+  let dragState = null;
 
   function createId() {
     return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
