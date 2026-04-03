@@ -1,0 +1,485 @@
+/* ===============================
+   TripPlanner Styles
+================================ */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
+}
+
+/* ===============================
+   Navbar
+================================ */
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 15px 0;
+}
+
+.nav-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 32px;
+}
+
+/* ✅ fixed: nav-links was broken in your file */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #111827;
+}
+.hero {
+
+text-align: center;
+
+padding: 50px 20px;
+
+background: #eaf2fb;
+
+}
+
+
+.hero h1 {
+font-size: 36px;
+font-weight: bolder;
+margin-bottom: 10px;
+font-style: 'inter';
+
+}
+
+
+.hero p {
+color: #555;
+ margin-bottom: 20px;
+font-size: 20px;
+font-style: normal;
+
+}
+
+
+.hero input {
+ width: 500px;
+ height: 30px;
+ padding: 10px;
+ border-radius: 57px;
+  border: 1px solid #d9eff6;
+
+}
+
+/* ===============================
+   Toolbar (Explore Filters + Count)
+================================ */
+
+.toolbar {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.region-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.region-button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  color: #374151;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.region-button:hover {
+  border-color: #0f766e;
+}
+
+.region-button.active {
+  background-color: #0f766e;
+  color: #ffffff;
+  border-color: #0f766e;
+}
+
+.country-count {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===============================
+   Countries Section (Explore Cards)
+================================ */
+
+.country-section {
+  margin-top: 20px;
+}
+
+.countries {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Card (Explore) */
+.card {
+  background: #ffffff;
+  width: 240px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  /* ✅ fixed opacity: 1.25 -> 0.25 */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Flag Image (Explore) */
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content (Explore) */
+.card-content {
+  padding: 20px 24px 28px;
+  flex: 1;
+}
+
+.card-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 6px 0;
+}
+
+/* Heart Button (Explore) */
+.heart {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 42px;
+  height: 42px;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.heart:hover {
+  background: #f87171;
+  color: white;
+}
+
+/* Load more button */
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 60px;
+}
+
+.load-more-button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background-color: #0f766e;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.35);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.load-more-button:hover {
+  background-color: #0d9488;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(15, 118, 110, 0.4);
+}
+
+/* ===============================
+   Comparison (kept from your file)
+================================ */
+
+.comparison-container {
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 36px 0;
+}
+
+.comparison-header h1 {
+  margin-bottom: 8px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 48px;
+  color: #0f172a;
+}
+
+.comparison-header p {
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #64748b;
+}
+
+/* ===============================
+   Wishlist Page (FINAL)
+================================ */
+
+.wishlist {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* top bar */
+.wishlist-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.wishlist-info h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+#wishlist-count {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* button */
+.btn-plan {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-plan:hover {
+  background: #574fd6;
+}
+
+/* empty state */
+.wishlist-empty {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.empty-heart {
+  font-size: 68px;
+  color: #cbd5e1;
+  margin-bottom: 18px;
+}
+
+.wishlist-empty h2 {
+  font-size: 20px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.wishlist-empty p {
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.btn-explore {
+  display: inline-block;
+  background: #0f766e;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-explore:hover {
+  background: #0d9488;
+}
+
+/* cards container */
+#wishlist-grid.wishlist-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* card */
+.wishlist-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* ✅ FIX: image must be controlled */
+.wishlist-flag {
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  display: block;
+}
+
+/* heart */
+.wishlist-heart {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+
+.wishlist-heart:hover {
+  transform: scale(1.12);
+}
+
+/* content */
+.wishlist-content {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wishlist-country {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.wishlist-region {
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f766e;
+  background: #e7f8f3;
+}
+
+.wishlist-details .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.wishlist-details .row span:last-child {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* responsive */
+@media (max-width: 720px) {
+  .wishlist-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .wishlist-card {
+    width: 100%;
+  }
+}
